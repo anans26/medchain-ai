@@ -73,7 +73,7 @@ class MedicalAIInference:
     """
     
     def __init__(self):
-self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
         # Optional SciSpacy NLP pipeline
         self.scispacy_nlp = _scispacy_nlp
         logger.info(f"Using device: {self.device}")
@@ -118,7 +118,17 @@ self.device = "cuda" if torch.cuda.is_available() else "cpu"
             "Tay-Sachs Disease": ["developmental delay", "seizures", "vision loss", "hearing loss", "muscle weakness"],
         }
     
-def load_medical_models(self):
+    def _init_lightweight_fallback(self):
+        """Initialize lightweight fallback models when transformers is not available"""
+        self.biobert_tokenizer = None
+        self.biobert_model = None
+        self.clinical_tokenizer = None
+        self.clinical_model = None
+        self.medical_ner = None
+        self.medical_classifier = None
+        logger.warning("Using lightweight fallback models - limited functionality available")
+        
+    def load_medical_models(self):
         """Load pre-trained medical models from Hugging Face if available.
         Falls back to lightweight stubs when transformers is absent."""
 

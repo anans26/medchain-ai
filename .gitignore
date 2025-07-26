@@ -1,0 +1,38 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node modules
+node_modules/
+client/web_interface/node_modules/
+
+# Log files
+*.log
+
+# Generated data
+monitoring/data/alerts/
+monitoring/data/dashboards/
+monitoring/data/*.png
+monitoring/data/metrics/
+test_suite/results/
+
+# OS specific files
+.DS_Store
+Thumbs.db

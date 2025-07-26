@@ -1,0 +1,196 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>MedChain AI Model Monitoring Dashboard</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 20px;
+                    background-color: #f5f5f5;
+                }
+                .container {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+                .header {
+                    background-color: #4a6fa5;
+                    color: white;
+                    padding: 20px;
+                    border-radius: 5px;
+                    margin-bottom: 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                .header h1 {
+                    margin: 0;
+                }
+                .status {
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    font-weight: bold;
+                }
+                .status-ok {
+                    background-color: #4caf50;
+                }
+                .status-alert {
+                    background-color: #f44336;
+                }
+                .metrics-grid {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 20px;
+                    margin-bottom: 20px;
+                }
+                .metric-card {
+                    background-color: white;
+                    border-radius: 5px;
+                    padding: 20px;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                }
+                .metric-title {
+                    font-size: 16px;
+                    color: #666;
+                    margin-bottom: 10px;
+                }
+                .metric-value {
+                    font-size: 24px;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
+                .metric-change {
+                    font-size: 14px;
+                    display: flex;
+                    align-items: center;
+                }
+                .change-positive {
+                    color: #4caf50;
+                }
+                .change-negative {
+                    color: #f44336;
+                }
+                .change-neutral {
+                    color: #888;
+                }
+                .plots-grid {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 20px;
+                    margin-bottom: 20px;
+                }
+                .plot-card {
+                    background-color: white;
+                    border-radius: 5px;
+                    padding: 20px;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                }
+                .plot-title {
+                    font-size: 18px;
+                    margin-bottom: 15px;
+                    color: #333;
+                }
+                .plot-image {
+                    width: 100%;
+                    height: auto;
+                }
+                .alerts-section {
+                    background-color: white;
+                    border-radius: 5px;
+                    padding: 20px;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                    margin-bottom: 20px;
+                }
+                .alert-item {
+                    padding: 10px;
+                    border-bottom: 1px solid #eee;
+                }
+                .alert-item:last-child {
+                    border-bottom: none;
+                }
+                .alert-time {
+                    font-size: 12px;
+                    color: #888;
+                }
+                .alert-message {
+                    font-size: 14px;
+                    margin-top: 5px;
+                }
+                .footer {
+                    text-align: center;
+                    margin-top: 20px;
+                    color: #888;
+                    font-size: 12px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="header">
+                    <h1>MedChain AI Model Monitoring Dashboard</h1>
+                    <div class="status {'status-ok' if metrics['status'] == 'OK' else 'status-alert'}">
+                        OK
+                    </div>
+                </div>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-title">Accuracy</div>
+                        <div class="metric-value">1.000</div>
+                        <div class="metric-change {'change-positive' if metrics.get('accuracy_change', 0) > 0 else 'change-negative' if metrics.get('accuracy_change', 0) < 0 else 'change-neutral'}">
+                            +0.0% from baseline
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-title">Latency</div>
+                        <div class="metric-value">12.71ms</div>
+                        <div class="metric-change {'change-negative' if metrics.get('latency_change', 0) > 0 else 'change-positive' if metrics.get('latency_change', 0) < 0 else 'change-neutral'}">
+                            +5.23ms from baseline
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-title">Confidence</div>
+                        <div class="metric-value">0.500</div>
+                        <div class="metric-change {'change-positive' if metrics.get('confidence_change', 0) > 0 else 'change-negative' if metrics.get('confidence_change', 0) < 0 else 'change-neutral'}">
+                            +0.0% from baseline
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="plots-grid">
+                    <div class="plot-card">
+                        <div class="plot-title">Accuracy Over Time</div>
+                        <img class="plot-image" src="accuracy_plot.png" alt="Accuracy Plot">
+                    </div>
+                    
+                    <div class="plot-card">
+                        <div class="plot-title">Latency Over Time</div>
+                        <img class="plot-image" src="latency_plot.png" alt="Latency Plot">
+                    </div>
+                    
+                    <div class="plot-card">
+                        <div class="plot-title">Confidence Over Time</div>
+                        <img class="plot-image" src="confidence_plot.png" alt="Confidence Plot">
+                    </div>
+                    
+                    <div class="plot-card">
+                        <div class="plot-title">Drift Over Time</div>
+                        <img class="plot-image" src="drift_plot.png" alt="Drift Plot">
+                    </div>
+                </div>
+                
+                <div class="alerts-section">
+                    <h2>Recent Alerts (0)</h2>
+                    
+                </div>
+                
+                <div class="footer">
+                    Last updated: 2025-07-26 16:40:02
+                </div>
+            </div>
+        </body>
+        </html>
+        
