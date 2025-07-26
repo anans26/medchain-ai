@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[project]
+name = "medchain-ai"
+version = "0.1.0"
+description = "Privacy-preserving rare disease diagnosis network running on Internet Computer"
+authors = [{name = "MedChain Labs"}]
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.22",
+    "requests>=2.28",
+    # Optional heavy deps – install with extras
+]
+
+[project.optional-dependencies]
+full = [
+    "torch>=2.2",
+    "transformers>=4.40",
+]
+
+nlp = [
+    "scispacy>=0.5.5",
+    "spacy>=3.7",
+    # lightweight medium sized clinical model
+    "https://huggingface.co/allenai/en_core_sci_md/resolve/main/en_core_sci_md-any-py3-none-any.whl",
+]
+
+dynamic = ["readme"]
+
+[tool.black]
+line-length = 88
+skip-string-normalization = true
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "B"]
+

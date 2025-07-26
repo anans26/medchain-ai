@@ -1,0 +1,8 @@
+npm error code ENOENT
+npm error syscall open
+npm error path /workspace/helthcare/client/package.json
+npm error errno -2
+npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open '/workspace/helthcare/client/package.json'
+npm error enoent This is related to npm not being able to find a file.
+npm error enoent
+npm error A complete log of this run can be found in: /root/.npm/_logs/2025-07-26T06_54_31_016Z-debug-0.log

@@ -1,0 +1,22 @@
+[package]
+name = "ai_inference"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+candid.workspace = true
+ic-cdk.workspace = true
+ic-cdk-macros.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+k256.workspace = true
+threshold-crypto.workspace = true
+
+# AI/ML dependencies
+candle-core = "0.3"
+candle-nn = "0.3"
+candle-transformers = "0.3"
